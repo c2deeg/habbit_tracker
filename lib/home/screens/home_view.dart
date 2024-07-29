@@ -9,6 +9,7 @@ import 'package:syncfusion_flutter_charts/charts.dart';
 import '../../core/common_ui/CommonClass.dart';
 import '../../core/theme/app_theme.dart';
 import '../../utils/appText.dart';
+import '../../utils/calender_helper.dart';
 
 class HomeView extends GetView<HomeViewController> {
   const HomeView({super.key});
@@ -483,6 +484,16 @@ class HomeView extends GetView<HomeViewController> {
                                       WeekChartView(),
                                     ],
                                   )
+                            : controller.isSelected.value == "m"
+                                ? Column(
+                                  children: [
+                                    timeStatusView(
+                                        title: '0:50',
+                                        subTitle: '14:00',
+                                        linearProgressValue: 0.5),
+                                    monthlyCalendarView(),
+                                  ],
+                                )
                                 : controller.isSelected.value == "y"
                                     ? Column(
                                         children: [
@@ -634,6 +645,58 @@ class HomeView extends GetView<HomeViewController> {
     );
   }
 
+  Widget monthlyCalendarView(){
+    return  Container(
+      padding: const EdgeInsets.symmetric(horizontal: 20,),
+      decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(25),
+          color: const Color(0XFF322F37)),
+      child: Column(
+        children: [
+           Padding(
+            padding: const EdgeInsets.only(left:20,right: 20,top: 25),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              crossAxisAlignment: CrossAxisAlignment.end,
+              children: [
+                CommonClass.normalText(
+                    text: "Session",
+                    color: Colors.white,
+                    fontSize: 16,
+                    fontFamily: "regularFont",
+                    fontWeight: FontWeight.w600),
+                Row(
+                  crossAxisAlignment: CrossAxisAlignment.end,
+                  children: [
+                    CommonClass.normalText(
+                        text: "1 / ",
+                        color: Colors.white,
+                        fontSize: 20,
+                        fontFamily: "regularFont",
+                        fontWeight: FontWeight.w600),
+                    Padding(
+                      padding: const EdgeInsets.only(bottom: 2.0),
+                      child: CommonClass.normalText(
+                          text: "14",
+                          color: Colors.white,
+                          fontSize: 16,
+                          fontFamily: "regularFont",
+                          fontWeight: FontWeight.w600),
+                    ),
+                  ],
+                ),
+              ],
+            ),
+          ),
+          CalendarWidget(
+            selectedDate: controller.selectedDate,
+            selectedMonth: controller.selectedMonth,
+          ),
+        ],
+      ),
+    );
+  }
+
   Widget yearCalenderView() {
     return Container(
       padding: const EdgeInsets.all(15),
@@ -644,21 +707,31 @@ class HomeView extends GetView<HomeViewController> {
         children: [
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            crossAxisAlignment: CrossAxisAlignment.end,
             children: [
-              AppText(
-                text: "Sessions",
-                color: Colors.white,
-              ),
+              CommonClass.normalText(
+                  text: "Session",
+                  color: Colors.white,
+                  fontSize: 16,
+                  fontFamily: "regularFont",
+                  fontWeight: FontWeight.w600),
               Row(
+                crossAxisAlignment: CrossAxisAlignment.end,
                 children: [
-                  AppText(
-                    text: "10 / ",
-                    color: Colors.white,
-                    textSize: 18,
-                  ),
-                  AppText(
-                    text: "168",
-                    color: Colors.white,
+                  CommonClass.normalText(
+                      text: "10 / ",
+                      color: Colors.white,
+                      fontSize: 20,
+                      fontFamily: "regularFont",
+                      fontWeight: FontWeight.w600),
+                  Padding(
+                    padding: const EdgeInsets.only(bottom: 2.0),
+                    child: CommonClass.normalText(
+                        text: "168",
+                        color: Colors.white,
+                        fontSize: 16,
+                        fontFamily: "regularFont",
+                        fontWeight: FontWeight.w600),
                   ),
                 ],
               ),

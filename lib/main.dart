@@ -3,11 +3,12 @@ import 'package:flutter/services.dart';
 import 'package:flutter_music/routes/routes.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-
 import 'core/app/app.dart';
 import 'core/constants/common_strings.dart';
+import 'package:intl/date_symbol_data_local.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  initializeDateFormatting("en", null);
   await SystemChrome.setPreferredOrientations([
     DeviceOrientation.portraitUp,
     DeviceOrientation.portraitDown,

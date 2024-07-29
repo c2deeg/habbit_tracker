@@ -6,6 +6,9 @@ class HomeViewController extends GetxController{
 
   RxString isSelected="".obs;
 
+  Rx<DateTime> selectedMonth= Rx(DateTime.now());
+  Rx<DateTime> selectedDate  = Rx(DateTime.now());
+
   @override
   void onInit() {
     super.onInit();
